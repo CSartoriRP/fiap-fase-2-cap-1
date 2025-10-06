@@ -23,6 +23,7 @@ Além disso, o sensor de umidade DHT22 vai decidir se precisa ligar ou não a ir
 Você e seu grupo podem pensar em irrigar uma lavoura (ligando o relé azul) de acordo com a combinação dos níveis de N, P, K, pH e umidade que desejarem, bastando para isso, escolher uma cultura agrícola e pesquisar quais suas reais necessidades de nutrientes em uma fazenda. A lógica de decisão de quando ligar ou desligar a bomba d’água é do grupo. Só precisa documentar isso na entrega.
 
  
+OS DOIS "IR ALÉM" FORAM FEITOS. INSTRUÇÕES AO FINAL DA APRESENTAÇÃO DO PROJETO
 
 Ir além – Integração Python com API Pública (opcional 1):
 
@@ -106,6 +107,27 @@ Cada versão tem seu próprio `sketch.ino` e `diagram.json` (Wokwi), permitindo 
 
 ---
 
+--- IR ALÉM 1
+
+# buscando_clima.py
+import os, json, sys, argparse
+# ... (imports da versão anterior)
+
+def get_api_key(cli_key):
+    if cli_key:
+        return cli_key
+    if os.getenv("OPENWEATHER_API_KEY"):
+        return os.getenv("OPENWEATHER_API_KEY")
+    try:
+        with open("config.local.json","r",encoding="utf-8") as f:
+            k = json.load(f).get("OPENWEATHER_API_KEY")
+            if k: return k
+    except FileNotFoundError:
+        pass
+    sys.exit("Faltou a API key. Copie config.example.json → config.local.json e preencha, ou use --api_key/OPENWEATHER_API_KEY.")
+
+
+
 ## 🎚️ Limiares e configuração (sugestão)
 
 Ajuste no topo do `sketch.ino` de cada versão conforme sua necessidade:
@@ -126,3 +148,6 @@ Ajuste no topo do `sketch.ino` de cada versão conforme sua necessidade:
 
 // Ajustes elétricos / hardware
 #define RELAY_ACTIVE_HIGH true   // Se seu relé for ativo em LOW, mudar para false
+
+-------
+
