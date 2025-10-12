@@ -1,8 +1,6 @@
 # 🌱 FarmTech Solutions – Sistema de Irrigação Inteligente  
 **FIAP – Fase 2, Capítulo 1 – Um Mapa do Tesouro**
 
-![FarmTech Solutions Banner](https://github.com/CSartoriRP/fiap-fase-2-cap-1/assets/banner-farmtech.png)
-
 ---
 
 ## 🎯 Visão Geral
