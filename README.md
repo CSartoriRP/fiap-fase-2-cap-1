@@ -12,6 +12,22 @@ A solução monitora variáveis como **umidade do solo**, **pH**, e **níveis de
 
 ---
 
+## 🧱 Evolução do Projeto e Versões Entregues
+
+O desenvolvimento foi dividido em fases, cada uma abordando novos conceitos e sensores no Wokwi:
+
+| Pasta | Descrição |
+|--------|------------|
+| 🟤 **projeto_base** | Estrutura inicial do ESP32 no Wokwi com relé, DHT22 e LDR, simulando pH e umidade. |
+| 🟠 **humidade-potenciometro** | Implementação do controle de irrigação com potenciômetro simulando o sensor de umidade. |
+| 🟡 **botoes-npk-dinamicos** | Adição dos três botões/potenciômetros para simular os níveis de Nitrogênio, Fósforo e Potássio (NPK). |
+| 🟢 **banana** | Lógica de irrigação adaptada para a cultura da banana, com faixas ideais de pH e NPK. |
+| 🔵 **ir-alem_analise-integrada** | Integração completa com Python (API OpenWeather) e R (análise estatística e relatório final). |
+
+> Cada pasta contém um **sketch.ino** e **diagram.json** específicos, além de capturas do circuito no Wokwi e documentação no próprio código.
+
+---
+
 ## 🧩 Estrutura do Projeto
 
 | Etapa | Tecnologia | Descrição |
@@ -102,7 +118,7 @@ O relatório HTML integra os resultados de todas as etapas e apresenta os gráfi
 | ![POP/RAIN3H](bomba_vs_pop_rain_ficticio.png) | Influência da **probabilidade e volume de chuva** sobre a irrigação. |
 | ![Correlação](correlacao_ficticio.png) | Correlação entre as principais variáveis do sistema. |
 
-📄 **Acesse:** [Relatório Final – report_final.html](analise-integrada/report_final.html)
+📄 **Acesse:** [Relatório Final – report_final.html](ir-alem_analise-integrada/report_final.html)
 
 ---
 
@@ -131,11 +147,11 @@ O relatório HTML integra os resultados de todas as etapas e apresenta os gráfi
 ```
 fiap-fase-2-cap-1/
 │
-├── sketch.ino
-├── diagram.json
-│
-├── busca_clima.py
-├── gera_pop_rain.py
+├── projeto_base/
+├── humidade-potenciometro/
+├── botoes-npk-dinamicos/
+├── banana/
+├── ir-alem_analise-integrada/
 │
 ├── data_analysis.R
 ├── data_analysis.Rmd
@@ -173,6 +189,11 @@ O projeto **FarmTech Solutions** demonstra um **ciclo completo de IoT + Data Sci
 **Desenvolvido por:**  
 👤 *Cláudio Sartori*  
 📚 FIAP – Pós Tech em Data Science & AI  
+
+Integrantes do Grupo 7
+<img width="370" height="484" alt="image" src="https://github.com/user-attachments/assets/770742e6-0323-43ff-b98e-8cb1c13effc2" />
+
+
 
 **Colaboração:**  
 🧠 ChatGPT (OpenAI) como assistente técnico e de documentação.
