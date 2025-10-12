@@ -1,153 +1,190 @@
-# 🌱 Projeto FIAP – Fase 2, Capítulo 1: *Um Mapa do Tesouro*
+# 🌱 FarmTech Solutions – Sistema de Irrigação Inteligente  
+**FIAP – Fase 2, Capítulo 1 – Um Mapa do Tesouro**
 
-Descrição do Projeto:
-
-Considerando como base a Fase anterior do projeto — que envolveu o cálculo de área plantada, monitoramento climático, entre outros —, a Fase 2 vai avançar no sistema de gestão agrícola da empresa FarmTech Solutions usando um dispositivo construído por você e seu grupo.
-
-Agora, vamos imaginar em como podemos conectar os sensores físicos para otimizar a irrigação agrícola e criar um sistema de irrigação inteligente. Toda cultura agrícola depende, em maior ou menor proporção, de três elementos químicos: Nitrogênio (N), Fósforo (P) e Potássio (K) — o famoso NPK. Isso vai influenciar o pH da terra e, obviamente, a produtividade daquela planta. Além disso, é preciso considerar a umidade do solo, que indica o quanto choveu em um determinado período observado. Infelizmente, no Wokwi.com — plataforma onde simulamos projetos ESP32 — não há sensores exclusivamente agrícolas. Por isso, faremos simulações e algumas substituições didáticas.
-
-No lugar dos sensores de nutrientes N, P e K, utilizaremos um botão verde em cada. Portanto, seu projeto precisa ter três botões simulando os níveis de cada elemento.
-
-No lugar do sensor de pH, utilizaremos um sensor de intensidade de luz chamado LDR (Light Dependent Resistor) que trará dados analógicos da intensidade da luz, mas, para fins de simulação, vamos assumir que ele representa o pH da terra. Como referência, podemos comparar os dados analógicos do pH que variam de 0 a 14, sendo próximo de 7, pH neutro. Você também pode adotar outras escalas maiores que 0 a 14 para melhorar sua mecânica ao manipular o sensor LDR.
-
-Quanto ao sensor de umidade, este possui um similar no Wokwi que mede a umidade do ar. Portanto, vamos adotar o DHT22 como medidor de umidade do solo (embora seja do ar na prática).
-
-O objetivo do projeto na Fase 2 será desenvolver um sistema de irrigação automatizado e inteligente que monitore a umidade do solo em tempo real, os níveis dos nutrientes N, P e K representados por botões (que vão “medir” os níveis como tudo ou nada, isto é, “true” ou “false”, ou em outras palavras, como botão pressionado ou não pressionado).  
-
-Quando você mexer nos botões e alterar os níveis do NPK, você deve mexer no sensor pH representado pelo sensor LDR, pois, em tese, você estaria alterando o pH da terra.
-
-
-
-Além disso, o sensor de umidade DHT22 vai decidir se precisa ligar ou não a irrigação conforme o necessário — isto é, ligando um relé azul representando uma bomba d’água de verdade.
-
-Você e seu grupo podem pensar em irrigar uma lavoura (ligando o relé azul) de acordo com a combinação dos níveis de N, P, K, pH e umidade que desejarem, bastando para isso, escolher uma cultura agrícola e pesquisar quais suas reais necessidades de nutrientes em uma fazenda. A lógica de decisão de quando ligar ou desligar a bomba d’água é do grupo. Só precisa documentar isso na entrega.
-
- 
-OS DOIS "IR ALÉM" FORAM FEITOS. INSTRUÇÕES AO FINAL DA APRESENTAÇÃO DO PROJETO
-
-Ir além – Integração Python com API Pública (opcional 1):
-
-Além do controle básico de irrigação com base nos sensores já mencionados, você e seu grupo podem integrar dados meteorológicos obtidos de uma API pública, como a OpenWeather, para prever condições climáticas adversas e ajustar a irrigação automaticamente.
-
-Por exemplo, se houver previsão de chuva, o sistema pode suspender a irrigação para economizar recursos. A integração entre Python e ESP32 do Wokwi.com não é trivial no plano gratuito. Caso não obtenha sucesso, transfira os dados manualmente entre os sistemas C/C++ e Python, copiando os dados dos resultados da API que conseguiu usando o Python para uma variável qualquer no código C/C++ do ESP32 no Wokwi, a qual indicará o nível de chuva na sua lógica de irrigação.
-
-Caso encontre uma forma automática para resolver isso, melhor ainda! Uma opção é ler caracteres via Monitor Serial do simulador ESP32, onde você pode inserir dados via tela do seu computador com o seu teclado enquanto o código está rodando. Basta explorar as funções Serial.available() e Serial.read().
-
- 
-
-Ir além – Análise em R (opcional 2):
-
-O grupo pode tentar implementar uma análise estatística em R qualquer — seja as apresentadas até o momento ou buscando nas referências da disciplina de R — para decidir se deve ligar ou não a bomba de irrigação (que é o relé azul). Isso lhe trará conhecimento de Data Science, um cargo que é bastante procurado no mercado de trabalho.
-
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Este repositório reúne **três versões evolutivas** do mesmo projeto de irrigação inteligente com **ESP32**.  
-Cada versão tem seu próprio `sketch.ino` e `diagram.json` (Wokwi), permitindo comparar decisões de projeto e resultados.
-
-> **Resumo da evolução:** do controle básico com entradas binárias para uma simulação mais realista, com **entradas analógicas contínuas** para NPK e umidade, e regras de bomba com histerese e limiares configuráveis.
+![FarmTech Solutions Banner](https://github.com/CSartoriRP/fiap-fase-2-cap-1/assets/banner-farmtech.png)
 
 ---
 
-## 📁 Estrutura do repositório
+## 🎯 Visão Geral
 
-| Pasta | Foco | O que mudou |
-|---|---|---|
-| `projeto_base/` | Fundamentos | Primeira versão funcional: leitura de sensores, NPK por **botões** (on/off), relé da bomba e histerese de umidade. |
-| `humidade-potenciometro/` | Umidade ajustável | Adiciona **potenciômetro** para simular umidade via ADC (`0–4095 → 0–100%`). Mantém DHT22 para ambiente. |
-| `botoes-npk-dinamicos/` | NPK dinâmico | Substitui os botões por **3 potenciômetros lineares (sliders)** para N, P e K (valores contínuos). Regras passam a usar limiares de NPK. |
+O projeto **FarmTech Solutions** é uma simulação completa de um **sistema de irrigação inteligente** para agricultura digital.  
+Desenvolvido em etapas progressivas, ele combina **IoT (ESP32)**, **integração de dados meteorológicos (Python)** e **análise estatística (R)** — culminando em um pipeline completo de **Agricultura 4.0**.
 
-> Obs.: os nomes das pastas refletem o histórico da disciplina; a pasta `botoes-npk-dinamicos` usa **sliders analógicos** (não mais botões).
+A solução monitora variáveis como **umidade do solo**, **pH**, e **níveis de nutrientes (NPK)**, além de ajustar automaticamente a irrigação conforme a **probabilidade de chuva (POP)** e a **precipitação esperada (RAIN3H)**.
 
 ---
 
-## 🔧 Versões em detalhe
+## 🧩 Estrutura do Projeto
 
-### 1) `projeto_base` — Fundamentos
-- **Sensores/atuadores:** DHT22 (umidade/temperatura), LDR (pH simulado), 3 botões (N, P, K), 1 relé (bomba).  
-- **Lógica:** liga/desliga da bomba por **histerese de umidade**; validações de pH e de NPK em nível **binário**.  
-- **O que mudou nesta etapa:** criação da base de leitura estável + acionamento do relé e logs via Serial.
-
----
-
-### 2) `humidade-potenciometro` — Umidade ajustável em tempo real
-- **Mudança principal:** adiciona **potenciômetro** ligado a um canal **ADC** do ESP32 para simular a umidade do solo.  
-- **Mapeamento típico:** `0–4095` → `0–100%`.  
-- **Benefício:** permite testar a histerese girando o knob e observar quando a bomba liga/desliga, sem depender das variações ambientais do DHT22.  
-- **O que mudou em relação ao `projeto_base`:** a decisão de irrigar passa a responder a uma entrada analógica contínua de “umidade do solo” (mantendo pH/NPK como estavam).
+| Etapa | Tecnologia | Descrição |
+|:------|:------------|:-----------|
+| 1️⃣ | **C++ / ESP32** | Simulação no [Wokwi](https://wokwi.com) com sensores (LDR, DHT22, potenciômetros) e relé da bomba d’água. |
+| 2️⃣ | **Python** | Captura de dados meteorológicos em tempo real via API pública [OpenWeather](https://openweathermap.org/). |
+| 3️⃣ | **R** | Análise estatística e visualização dos dados com regressão logística e correlação entre variáveis. |
+| 4️⃣ | **HTML (RMarkdown)** | Geração de relatório visual consolidando os resultados da simulação e análise. |
 
 ---
 
-### 3) `botoes-npk-dinamicos` — NPK com sliders analógicos
-- **Mudança:** N, P e K passam a ser **valores contínuos**, lidos por **três potenciômetros lineares** (sliders) conectados a entradas analógicas.  
-- **Leitura típica:** `porcentagem = map(analogRead(pin), 0, 4095, 0, 100)`.  
-- **Regra de irrigação (exemplo):** irrigar somente se **(umidade < LIMIAR)** **e** `N ≥ LIMIAR_N` **e** `P ≥ LIMIAR_P` **e** `K ≥ LIMIAR_K` **e** `pH` dentro da faixa.  
-- **O que mudou em relação a `humidade-potenciometro`:** além da umidade analógica, os nutrientes viram **entradas analógicas** com limiares individuais.
+## ⚙️ Arquitetura Completa
 
-> Consulte cada `diagram.json` para o mapeamento exato de pinos no Wokwi/ESP32, pois a pinagem pode variar entre as versões.
-
----
-
-## 🧷 Pinagem (referência de uso)
-
-> **Importante:** os pinos abaixo são uma **referência**. Confirme sempre no `diagram.json` de cada pasta, que é a “fonte da verdade” do hardware no Wokwi.
-
-| Componente | Sinal | Sugestão de pino ESP32 | Observações |
-|---|---|---|---|
-| DHT22 | DADOS | `GPIO15` | Requer biblioteca DHTesp; definir taxa de leitura (>2s). |
-| Relé (IN) | Controle | `GPIO25` | Ajuste `RELAY_ACTIVE_HIGH` conforme seu módulo (active high/low). |
-| LDR / Sensor pH simulado | ADC | `GPIO34` (ADC1_CH6) | Entrada **somente leitura**; mapear para faixa de pH. |
-| Pot. Umidade (knob) | ADC | `GPIO33` (ADC1_CH5) | `0–4095 → 0–100%`. |
-| Slider N | ADC | `GPIO32` (ADC1_CH4) | `0–4095 → 0–100%`. |
-| Slider P | ADC | `GPIO35` (ADC1_CH7) | `0–4095 → 0–100%`. |
-| Slider K | ADC | `GPIO36`/`VP` (ADC1_CH0) | `0–4095 → 0–100%`. |
-
-> **Dica:** prefira os canais **ADC1** (GPIOs 32–39) para evitar conflitos com o Wi-Fi (que usa ADC2).
+```
+[ESP32 + Sensores (Wokwi)] 
+         │
+         ▼
+ [Python - API OpenWeather]
+         │
+         ▼
+ [R - Processamento e Modelagem]
+         │
+         ▼
+ [HTML - Relatório Final]
+```
 
 ---
 
---- IR ALÉM 1
+## 🧱 Componentes e Arquivos
 
-# buscando_clima.py
-import os, json, sys, argparse
-# ... (imports da versão anterior)
+### 🔧 ESP32 (C++ / Arduino)
+**Arquivos:**  
+- `sketch.ino`  
+- `diagram.json`
 
-def get_api_key(cli_key):
-    if cli_key:
-        return cli_key
-    if os.getenv("OPENWEATHER_API_KEY"):
-        return os.getenv("OPENWEATHER_API_KEY")
-    try:
-        with open("config.local.json","r",encoding="utf-8") as f:
-            k = json.load(f).get("OPENWEATHER_API_KEY")
-            if k: return k
-    except FileNotFoundError:
-        pass
-    sys.exit("Faltou a API key. Copie config.example.json → config.local.json e preencha, ou use --api_key/OPENWEATHER_API_KEY.")
+**Principais Funções:**
+- Leitura de sensores simulados (LDR → pH, potenciômetros → NPK e umidade).  
+- Controle da bomba com histerese (liga <55%, desliga >70%).  
+- Comandos via Serial (`POP=`, `RAIN3H=`, `HOLD=`, `CLEAR`, `STATUS?`).  
+- Registro contínuo dos dados (`logs.txt`).
 
+---
 
+### 🌦️ Python – Integração com OpenWeather
 
-## 🎚️ Limiares e configuração (sugestão)
+**Arquivos:**  
+- `busca_clima.py` → coleta dados de previsão do tempo e gera `weather.csv`.  
+- `gera_pop_rain.py` → lê `weather.csv`, extrai POP/RAIN3H e gera comandos para o Wokwi.  
 
-Ajuste no topo do `sketch.ino` de cada versão conforme sua necessidade:
+**Exemplo de uso:**
+```bash
+python busca_clima.py --cities-file cities.csv --out .
+python gera_pop_rain.py --city "Curitiba" --hours 3
+```
 
-```cpp
-// Histerese de umidade do solo
-#define HUM_ON   55    // (%) liga a bomba quando abaixo deste valor
-#define HUM_OFF  70    // (%) desliga quando acima deste valor
+**Saída:**  
+`weather.csv` com previsões completas e POP/RAIN3H prontos para enviar ao ESP32.
 
-// Faixa de pH aceitável
-#define PH_MIN   5.8
-#define PH_MAX   6.5
+---
 
-// Limiar de nutrientes (versão NPK dinâmico)
-#define N_MIN    60    // (%)
-#define P_MIN    60    // (%)
-#define K_MIN    60    // (%)
+### 💧 R – Análise Estatística e Visualização
 
-// Ajustes elétricos / hardware
-#define RELAY_ACTIVE_HIGH true   // Se seu relé for ativo em LOW, mudar para false
+**Arquivos:**  
+- `data_analysis.R` → lê `logs.txt` e `weather.csv`, gera `irrigation_events.csv`.  
+- `data_analysis.Rmd` → cria o relatório final `report.html`.  
+- `report_final.html` → relatório visual autônomo com gráficos finais.  
 
--------
+**Gráficos gerados:**
+- `bomba_vs_umidade.png` → histerese da irrigação.  
+- `bomba_vs_pop_rain.png` → influência de POP e chuva.  
+- `correlacao.png` → correlação entre variáveis.  
 
+**Saídas:**  
+- `irrigation_events.csv`  
+- `weather_latest_by_city.csv`  
+- `modelo_logistico.txt`  
+- `report.html` ou `report_final.html`
+
+---
+
+### 📊 Relatório Final HTML
+
+O relatório HTML integra os resultados de todas as etapas e apresenta os gráficos abaixo:
+
+| Gráfico | Descrição |
+|:--------|:-----------|
+| ![Umidade](bomba_vs_umidade_ficticio.png) | Relação entre **umidade do solo** e acionamento da bomba. |
+| ![POP/RAIN3H](bomba_vs_pop_rain_ficticio.png) | Influência da **probabilidade e volume de chuva** sobre a irrigação. |
+| ![Correlação](correlacao_ficticio.png) | Correlação entre as principais variáveis do sistema. |
+
+📄 **Acesse:** [Relatório Final – report_final.html](analise-integrada/report_final.html)
+
+---
+
+## 🧠 Lógica de Decisão (Resumo)
+
+| Condição | Ação da Bomba | Observação |
+|-----------|---------------|-------------|
+| Umid < 55% e sem chuva prevista | 💧 **Liga** | Irrigação necessária |
+| Umid > 70% | 📴 **Desliga** | Solo úmido o suficiente |
+| POP ≥ 60% ou RAIN3H ≥ 1.0 | ☁️ **Desliga (HOLD ON)** | Chuva prevista, irrigação suspensa |
+| HOLD=ON manual | ⏸️ **Pausa** | Bloqueio temporário via Serial |
+
+---
+
+## 🧪 Resultados de Simulação
+
+- Bomba ligada em condições de baixa umidade (<55%).  
+- Sistema suspende automaticamente quando há previsão de chuva (POP ≥ 60%).  
+- HOLD automático evita reativações prematuras após detecção de chuva.  
+- Regressão logística confirma correlação inversa entre **umidade** e acionamento.  
+
+---
+
+## 🧾 Estrutura de Pastas Recomendada
+
+```
+fiap-fase-2-cap-1/
+│
+├── sketch.ino
+├── diagram.json
+│
+├── busca_clima.py
+├── gera_pop_rain.py
+│
+├── data_analysis.R
+├── data_analysis.Rmd
+│
+├── irrigation_events.csv
+├── weather_latest_by_city.csv
+├── logs.txt
+│
+├── report_final.html
+│
+├── bomba_vs_umidade_ficticio.png
+├── bomba_vs_pop_rain_ficticio.png
+├── correlacao_ficticio.png
+│
+└── README.md
+```
+
+---
+
+## 🧬 Conclusão
+
+O projeto **FarmTech Solutions** demonstra um **ciclo completo de IoT + Data Science**, aplicando:
+
+- Sensores simulados no **ESP32 (C++)**  
+- Aquisição de dados via **API pública (Python)**  
+- Processamento e análise com **R**  
+- Relatório interativo em **HTML**
+
+🧭 Representa um exemplo prático de **Agricultura Inteligente** com integração entre hardware, software e ciência de dados aplicada.
+
+---
+
+## ✨ Créditos
+
+**Desenvolvido por:**  
+👤 *Cláudio Sartori*  
+📚 FIAP – Pós Tech em Data Science & AI  
+
+**Colaboração:**  
+🧠 ChatGPT (OpenAI) como assistente técnico e de documentação.
+
+---
+
+## 🔗 Repositório GitHub
+
+👉 [https://github.com/CSartoriRP/fiap-fase-2-cap-1](https://github.com/CSartoriRP/fiap-fase-2-cap-1)
+
+---
+
+© 2025 • FarmTech Solutions – FIAP • Todos os direitos reservados
