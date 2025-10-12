@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "author": "Claudio Sartori",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": -4.76, "attrs": {} },
+    { "type": "wokwi-photoresistor-sensor", "id": "ldr1", "top": -64, "left": -268, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -28.5,
+      "left": 205.8,
+      "attrs": { "humidity": "95" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 240.2, "left": -9.6, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "pot1", "top": -164.5, "left": 86.2, "attrs": {} },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot_n",
+      "top": -4.6,
+      "left": -375.4,
+      "attrs": { "travelLength": "20" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot_p",
+      "top": 91.4,
+      "left": -375.4,
+      "attrs": { "travelLength": "20" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot_k",
+      "top": 187.4,
+      "left": -375.4,
+      "attrs": { "travelLength": "20" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h105.6", "v76.8" ] ],
+    [ "ldr1:GND", "esp:GND.2", "black", [ "h0" ] ],
+    [ "esp:34", "ldr1:AO", "green", [ "h-19.05", "v-86.4", "h-76.8" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h-28.8", "v-76.8", "h-192.15" ] ],
+    [ "esp:15", "dht1:DAT", "green", [ "h134.4", "v-86.4" ] ],
+    [ "esp:GND.2", "dht1:GND", "black", [ "h76.8", "v86.4", "h76.8" ] ],
+    [ "esp:5V", "relay1:VCC", "red", [ "h-28.65", "v57.6" ] ],
+    [ "esp:GND.1", "relay1:GND", "black", [ "h-57.45", "v115.6" ] ],
+    [ "esp:25", "relay1:IN", "green", [ "h-38.25", "v173" ] ],
+    [ "esp:32", "pot1:Vout", "green", [] ],
+    [ "pot1:GND", "esp:GND.3", "black", [ "v0" ] ],
+    [ "pot1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "pot1:SIG", "esp:27", "green", [ "v0" ] ],
+    [ "pot_n:VCC", "esp:3V3", "red", [ "v-28.8", "h374.25" ] ],
+    [ "pot_n:SIG", "esp:33", "green", [ "v37.6", "h374.25" ] ],
+    [ "pot_n:GND", "esp:GND.1", "black", [ "h148.6", "v105.6" ] ],
+    [ "pot_p:GND", "esp:GND.1", "black", [ "h148.6", "v19.2" ] ],
+    [ "pot_p:SIG", "esp:32", "green", [ "v37.6", "h374.25" ] ],
+    [ "pot_p:VCC", "esp:3V3", "red", [ "v-28.8", "h412.8", "v-76.8" ] ],
+    [ "pot_k:VCC", "esp:3V3", "red", [ "v-28.8", "h326.4", "v-172.8" ] ],
+    [ "pot_k:SIG", "esp:35", "green", [ "v37.6", "h297.6", "v-211.2" ] ],
+    [ "pot_k:GND", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
