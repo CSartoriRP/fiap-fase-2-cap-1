@@ -187,10 +187,9 @@ O projeto **FarmTech Solutions** demonstra um **ciclo completo de IoT + Data Sci
 ## ✨ Créditos
 
 **Desenvolvido por:**  
-👤 *Cláudio Sartori*  
-📚 FIAP – Pós Tech em Data Science & AI  
 
 Integrantes do Grupo 7
+
 <img width="370" height="484" alt="image" src="https://github.com/user-attachments/assets/770742e6-0323-43ff-b98e-8cb1c13effc2" />
 
 
