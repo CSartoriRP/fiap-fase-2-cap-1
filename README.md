@@ -40,6 +40,10 @@ O desenvolvimento foi dividido em fases, cada uma abordando novos conceitos e se
 Desenho do Projeto Base no Wokwi
 <img width="837" height="612" alt="image" src="https://github.com/user-attachments/assets/7561237b-92d5-486b-9eda-88576b55f588" />
 
+Desenho do Projeto Final no Wokwi > **Análise Integrada + Parâmetros Variáveis**
+<img width="858" height="643" alt="image" src="https://github.com/user-attachments/assets/58687175-95ca-4534-88f4-3e7e0397d7ff" />
+
+
 ---
 
 ## ⚙️ Arquitetura Completa
