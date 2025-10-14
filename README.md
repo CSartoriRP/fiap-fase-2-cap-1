@@ -114,9 +114,9 @@ O relatório HTML integra os resultados de todas as etapas e apresenta os gráfi
 
 | Gráfico | Descrição |
 |:--------|:-----------|
-| ![Umidade](bomba_vs_umidade_ficticio.png) | Relação entre **umidade do solo** e acionamento da bomba. |
-| ![POP/RAIN3H](bomba_vs_pop_rain_ficticio.png) | Influência da **probabilidade e volume de chuva** sobre a irrigação. |
-| ![Correlação](correlacao_ficticio.png) | Correlação entre as principais variáveis do sistema. |
+| ![Umidade] | Relação entre **umidade do solo** e acionamento da bomba. |
+| ![POP/RAIN3H] | Influência da **probabilidade e volume de chuva** sobre a irrigação. |
+| ![Correlação] | Correlação entre as principais variáveis do sistema. |
 
 📄 **Acesse:** [Relatório Final – report_final.html](ir-alem_analise-integrada/report_final.html)
 
