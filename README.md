@@ -104,7 +104,7 @@ python gera_pop_rain.py --city "Curitiba" --hours 3
 - `irrigation_events.csv`  
 - `weather_latest_by_city.csv`  
 - `modelo_logistico.txt`  
-- `report.html` ou `report_final.html`
+- `report_final.html`
 
 ---
 
@@ -162,9 +162,9 @@ fiap-fase-2-cap-1/
 │
 ├── report_final.html
 │
-├── bomba_vs_umidade_ficticio.png
-├── bomba_vs_pop_rain_ficticio.png
-├── correlacao_ficticio.png
+├── bomba_vs_umidade.png
+├── bomba_vs_pop_rain.png
+├── correlacao.png
 │
 └── README.md
 ```
