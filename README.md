@@ -37,6 +37,9 @@ O desenvolvimento foi dividido em fases, cada uma abordando novos conceitos e se
 | 3️⃣ | **R** | Análise estatística e visualização dos dados com regressão logística e correlação entre variáveis. |
 | 4️⃣ | **HTML (RMarkdown)** | Geração de relatório visual consolidando os resultados da simulação e análise. |
 
+Desenho do Projeto Base no Wokwi
+<img width="837" height="612" alt="image" src="https://github.com/user-attachments/assets/7561237b-92d5-486b-9eda-88576b55f588" />
+
 ---
 
 ## ⚙️ Arquitetura Completa
