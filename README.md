@@ -99,7 +99,7 @@ python gera_pop_rain.py --city "Curitiba" --hours 3
 
 **Arquivos:**  
 - `data_analysis.R` → lê `logs.txt` e `weather.csv`, gera `irrigation_events.csv`.  
-- `data_analysis.Rmd` → cria o relatório final `report.html`.  
+- `data_analysis.Rmd` → cria o relatório final `report_final.html`.  
 - `report_final.html` → relatório visual autônomo com gráficos finais.  
 
 **Gráficos gerados:**
