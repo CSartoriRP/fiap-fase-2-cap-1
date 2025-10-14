@@ -23,10 +23,10 @@ bool latched[3]         = {false, false, false}; // N, P, K travados
 int  prevRead[3]        = {HIGH, HIGH, HIGH};    // leitura anterior (pull-up = HIGH em repouso)
 unsigned long lastT[3]  = {0, 0, 0};             // debounce ms
 
-// Alvos da cultura (Banana)
-const float phMin = 5.5, phMax = 6.6;
-const float umidadeLiga = 55.0;     // liga se umidade < 55%
-const float umidadeDesliga = 70.0;  // desliga se umidade > 70%
+// Alvos da cultura - Banana
+const float phMin = 5.5, phMax = 6.5;         // faixa ideal do solo
+const float umidadeLiga = 60.0;               // liga bomba se < 60%
+const float umidadeDesliga = 80.0;            // desliga bomba se > 80%
 
 DHTesp dht;
 bool bombaLigada = false;
