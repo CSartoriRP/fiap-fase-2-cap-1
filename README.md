@@ -19,9 +19,8 @@ O desenvolvimento foi dividido em fases, cada uma abordando novos conceitos e se
 | Pasta | Descrição |
 |--------|------------|
 | 🟤 **projeto_base** | Estrutura inicial do ESP32 no Wokwi com relé, DHT22 e LDR, simulando pH e umidade. |
-| 🟠 **humidade-potenciometro** | Implementação do controle de irrigação com potenciômetro simulando o sensor de umidade. |
+| 🟠 **banana-humidade-potenciometro** | Implementação do controle de irrigação com potenciômetro simulando o sensor de umidade e considerando os parâmetros do cultivo de bananas. |
 | 🟡 **botoes-npk-dinamicos** | Adição dos três botões/potenciômetros para simular os níveis de Nitrogênio, Fósforo e Potássio (NPK). |
-| 🟢 **banana** | Lógica de irrigação adaptada para a cultura da banana, com faixas ideais de pH e NPK. |
 | 🔵 **ir-alem_analise-integrada** | Integração completa com Python (API OpenWeather) e R (análise estatística e relatório final). |
 
 > Cada pasta contém um **sketch.ino** e **diagram.json** específicos, além de capturas do circuito no Wokwi e documentação no próprio código.
@@ -155,9 +154,8 @@ O relatório HTML integra os resultados de todas as etapas e apresenta os gráfi
 fiap-fase-2-cap-1/
 │
 ├── projeto_base/
-├── humidade-potenciometro/
+├── banana-humidade-potenciometro/
 ├── botoes-npk-dinamicos/
-├── banana/
 ├── ir-alem_analise-integrada/
 │
 ├── data_analysis.R
