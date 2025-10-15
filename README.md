@@ -1,6 +1,9 @@
 # 🌱 FarmTech Solutions – Sistema de Irrigação Inteligente  
 **FIAP – Fase 2, Capítulo 1 – Um Mapa do Tesouro**
 
+Vídeo Apresentando o Projeto no Wokwi
+https://youtu.be/NquZ6oJHlyk
+
 ---
 
 ## 🎯 Visão Geral
